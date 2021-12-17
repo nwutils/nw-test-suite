@@ -7,8 +7,12 @@
       body {
         font-family: monospace, system-ui;
       }
-      h1, h2, h3, h4, h5, h6 {
+      h1, h2 {
         font-weight: inherit;
+      }
+      h3,
+      label {
+        font-weight: bold;
       }
       fieldset {
         margin: 16px 0px;
@@ -30,7 +34,7 @@
     <h2><strong>Chromium</strong> <script>document.write(process.versions.chromium)</script></h2>
     <h2><strong>Node.js</strong> <script>document.write(process.version)</script></h2>
 
-    <h3><strong>nw.App Actions:</strong></h3>
+    <h3>nw.App Actions:</h3>
 
     <fieldset>
       <legend>Closing the window</legend>
@@ -61,85 +65,156 @@
       </p>
     </fieldset>
 
+    <h3>DOM changes</h3>
+
+    <fieldset>
+      <legend>File inputs</legend>
+      <label>
+        File Select
+        <input type="file" id="file-select">
+      </label>
+      <p>
+        Selected files should have a full file path, not relative, or with "fake" in the path.
+        <strong id="selected-file"></strong>
+      </p>
+
+      <label>
+        Folder select
+        <input
+          type="file"
+          id="folder-select"
+          nwdirectory
+          nwdirectorydesc="Sanity Description"
+          nwworkingdir="C:\Users"
+        >
+      </label>
+      <p>
+        Should show "Sanity Description" as window title and "C:\Users" as the starting folder.
+        <strong id="selected-folder"></strong>
+      </p>
+
+      <label>
+        Save-As select
+        <input
+          type="file"
+          nwdirectory
+          nwsaveas="sanity.txt"
+        >
+      </label>
+      <p>
+        Should show "Save as" as window title
+      </p>
+    </fieldset>
+
     <script>
       const win = nw.Window.get();
       win.showDevTools();
       const assert = require('assert').deepEqual;
+      const fs = require('fs');
+      const path = require('path');
 
-      // ////////////////////////////////////////////////////////////////
-      // nw.App - https://nwjs.readthedocs.io/en/latest/References/App //
-      // ////////////////////////////////////////////////////////////////
-
-      assert(nw.App.argv, []);
-      assert(nw.App.fullArgv, []);
-      assert(nw.App.filteredArgv, [
-        /^--url=/,
-        /^--remote-debugging-port=/,
-        /^--renderer-cmd-prefix=/,
-        /^--nwapp=/
-      ]);
-      assert(nw.App.startPath, process.cwd());
-      let appData;
-      if (process.platform === 'win32') {
-        appData = 'C:\\Users\\' + process.env.USERNAME + '\\AppData\\Local\\nw-api-sanity-check\\User Data\\Default';
-      }
-      assert(nw.App.dataPath, appData);
-      let manifest = {
-        ...require('./package.json'),
-        main: 'file://index.html',
-        window: { position: 'center' }
-      };
-      assert(nw.App.manifest, manifest);
-      nw.App.clearCache();
-      // NOTE: I have no idea what to pass into this function. Docs just say "manifest_url"?
-      nw.App.clearAppCache('');
-      // NOTE: So how I think this works is if you have not updated the component then it is false and
-      // '0.0.0.0'. But once you update it, it's `true` and '4.10.2391.0' on every load? I don't know.
-      // Will need to mock out somehting for that 4.10 version number, as I'm sure it will change.
-      nw.App.updateComponent('WIDEVINE', function (success) {
-        assert(typeof(success), 'boolean');
-        nw.App.enableComponent('WIDEVINE', function (version) {
-          assert(version, '4.10.2391.0');
-        });
-      });
-      assert(nw.App.getProxyForURL('https://google.com'), 'DIRECT');
-      assert(nw.App.setProxyConfig('DIRECT'), undefined);
-      assert(nw.App.getProxyForURL('https://google.com'), 'PROXY direct:80');
-      // This was deprecated in 0.11.0
-      // nw.App.setCrashDumpDir('./folder');
-      nw.App.addOriginAccessWhitelistEntry('http://github.com/', 'chrome-extension', location.host, true);
-      nw.App.removeOriginAccessWhitelistEntry('http://github.com/', 'chrome-extension', location.host, true);
-
-      const shortcut = new nw.Shortcut({
-        key : 'Ctrl+Shift+H',
-        active : function () {
-          nw.Window.get().focus();
-          alert('Global desktop keyboard shortcut: ' + this.key + ' active.');
-        },
-        failed : function (msg) {
-          console.log(msg);
+      /**
+       * nw.App
+       * https://nwjs.readthedocs.io/en/latest/References/App
+       */
+      function nwApp () {
+        assert(nw.App.argv, []);
+        assert(nw.App.fullArgv, []);
+        assert(nw.App.filteredArgv, [
+          /^--url=/,
+          /^--remote-debugging-port=/,
+          /^--renderer-cmd-prefix=/,
+          /^--nwapp=/
+        ]);
+        assert(nw.App.startPath, process.cwd());
+        let appData;
+        if (process.platform === 'win32') {
+          appData = 'C:\\Users\\' + process.env.USERNAME + '\\AppData\\Local\\nw-api-sanity-check\\User Data\\Default';
         }
-      });
-      function registerShortcut () {
-        nw.App.registerGlobalHotKey(shortcut);
-
-        shortcut.on('active', function () {
-          console.log('Global desktop keyboard shortcut: ' + this.key + ' active.');
+        assert(nw.App.dataPath, appData);
+        let manifest = {
+          ...require('./package.json'),
+          main: 'file://index.html',
+          window: { position: 'center' }
+        };
+        assert(nw.App.manifest, manifest);
+        nw.App.clearCache();
+        // NOTE: I have no idea what to pass into this function. Docs just say "manifest_url"?
+        nw.App.clearAppCache('');
+        // NOTE: So how I think this works is if you have not updated the component then it is false and
+        // '0.0.0.0'. But once you update it, it's `true` and '4.10.2391.0' on every load? I don't know.
+        // Will need to mock out somehting for that 4.10 version number, as I'm sure it will change.
+        nw.App.updateComponent('WIDEVINE', function (success) {
+          assert(typeof(success), 'boolean');
+          nw.App.enableComponent('WIDEVINE', function (version) {
+            assert(version, '4.10.2391.0');
+          });
         });
-        shortcut.on('failed', function (msg) {
-          console.log(msg);
+        const proxy = nw.App.getProxyForURL('https://google.com');
+        assert(proxy === 'DIRECT' || proxy === 'PROXY direct:80', true);
+        assert(nw.App.setProxyConfig('DIRECT'), undefined);
+        assert(nw.App.getProxyForURL('https://google.com'), 'PROXY direct:80');
+        // setCrashDumpDir was deprecated in 0.11.0
+        // nw.App.setCrashDumpDir('./folder');
+        nw.App.addOriginAccessWhitelistEntry('http://github.com/', 'chrome-extension', location.host, true);
+        nw.App.removeOriginAccessWhitelistEntry('http://github.com/', 'chrome-extension', location.host, true);
+
+        const shortcut = new nw.Shortcut({
+          key : 'Ctrl+Shift+H',
+          active : function () {
+            nw.Window.get().focus();
+            alert('Global desktop keyboard shortcut: ' + this.key + ' active.');
+          },
+          failed : function (msg) {
+            console.log(msg);
+          }
+        });
+        function registerShortcut () {
+          nw.App.registerGlobalHotKey(shortcut);
+
+          shortcut.on('active', function () {
+            console.log('Global desktop keyboard shortcut: ' + this.key + ' active.');
+          });
+          shortcut.on('failed', function (msg) {
+            console.log(msg);
+          });
+        }
+        function unregisterShortcut () {
+          nw.App.unregisterGlobalHotKey(shortcut);
+        }
+
+        nw.App.on('open', function (evt) {
+          console.log('nw.App.open Event', evt);
+        });
+        nw.App.on('reopen', function (evt) {
+          console.log('nw.App.reopen Event', evt);
         });
       }
-      function unregisterShortcut () {
-        nw.App.unregisterGlobalHotKey(shortcut);
-      }
+      nwApp();
 
-      nw.App.on('open', function (evt) {
-        console.log('nw.App.open Event', evt);
-      });
-      nw.App.on('reopen', function (evt) {
-        console.log('nw.App.reopen Event', evt);
-      });
+      /**
+       * Changes to DOM
+       * https://nwjs.readthedocs.io/en/latest/References/Changes%20to%20DOM
+       */
+      function domChanges () {
+        const fileInput = document.getElementById('file-select');
+        const fileOutput = document.getElementById('selected-file');
+        const folderOutput = document.getElementById('selected-folder');
+        fileInput.addEventListener('change', function (evt) {
+          const selectedFile = evt.target.files[0].path;
+          fileOutput.innerText = selectedFile;
+          assert(path.isAbsolute(selectedFile), true);
+          assert(path.isAbsolute(fileInput.value), true);
+        });
+        const folderInput = document.getElementById('folder-select');
+        folderInput.addEventListener('change', function (evt) {
+          const selectedFolder = evt.target.files[0].path;
+          folderOutput.innerText = selectedFolder;
+          assert(fs.lstatSync(selectedFolder).isFile(), false);
+          assert(fs.lstatSync(folderInput.value).isFile(), false);
+        });
+      }
+      domChanges();
     </script>
   </body>
 </html>
