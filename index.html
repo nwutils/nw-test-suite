@@ -3,36 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>API sanity check</title>
-    <style>
-      body {
-        font-family: monospace, system-ui;
-      }
-      h1, h2 {
-        font-weight: inherit;
-      }
-      h3,
-      label {
-        font-weight: bold;
-      }
-      fieldset {
-        margin: 16px 0px;
-        border-color: #FFF;
-      }
-      legend {
-        padding: 0px 11px 0px 6px;
-      }
-      code {
-        background: #CCC;
-        border: 1px solid #999;
-        border-radius: 4px;
-        padding: 0px 4px;
-      }
-    </style>
+    <link rel="stylesheet" href="sanity.css" />
   </head>
   <body>
     <h1><strong>NW.js</strong> <script>document.write(process.versions.nw)</script></h1>
     <h2><strong>Chromium</strong> <script>document.write(process.versions.chromium)</script></h2>
     <h2><strong>Node.js</strong> <script>document.write(process.version)</script></h2>
+
+    <hr />
+
+    <h1>Manual testing</h1>
 
     <h3>nw.App Actions:</h3>
 
@@ -65,45 +45,86 @@
       </p>
     </fieldset>
 
-    <h3>DOM changes</h3>
+    <h3>DOM Changes</h3>
 
     <fieldset>
       <legend>File inputs</legend>
-      <label>
-        File Select
-        <input type="file" id="file-select">
-      </label>
-      <p>
-        Selected files should have a full file path, not relative, or with "fake" in the path.
-        <strong id="selected-file"></strong>
-      </p>
+      <div class="halves">
+        <label>
+          File Select
+          <input
+            id="file-select"
+            type="file"
+          >
+        </label>
+        <p>
+          Selected files should have a full file path, not relative, or with "fake" in the path.
+          <strong id="selected-file"></strong>
+        </p>
 
-      <label>
-        Folder select
-        <input
-          type="file"
-          id="folder-select"
-          nwdirectory
-          nwdirectorydesc="Sanity Description"
-          nwworkingdir="C:\Users"
-        >
-      </label>
-      <p>
-        Should show "Sanity Description" as window title and "C:\Users" as the starting folder.
-        <strong id="selected-folder"></strong>
-      </p>
+        <label>
+          Folder select
+          <input
+            id="folder-select"
+            type="file"
+            nwdirectory
+            nwdirectorydesc="Sanity Description"
+            nwworkingdir="C:\Users"
+          >
+        </label>
+        <p>
+          Should show "Sanity Description" as window title and "C:\Users" as the starting folder.
+          <strong id="selected-folder"></strong>
+        </p>
 
-      <label>
-        Save-As select
-        <input
-          type="file"
-          nwdirectory
-          nwsaveas="sanity.txt"
-        >
-      </label>
-      <p>
-        Should show "Save as" as window title
-      </p>
+        <label>
+          Save-As select
+          <input
+            id="save-as-select"
+            type="file"
+            nwsaveas="sanity.txt"
+          >
+        </label>
+        <p>
+          Should show "Save as" as window title with "sanity.txt" as file name default.
+          <strong id="selected-save-as"></strong>
+        </p>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>IFrames</legend>
+      <div class="halves">
+        <iframe src="src/iframe.html"></iframe>
+        <p>
+          Node <strong>should</strong> be accessible in this iframe.
+        </p>
+
+        <iframe src="src/iframe.html" nwdisable></iframe>
+        <p>
+          Node <strong>should not</strong> be accessible in this iframe.
+        </p>
+
+        <iframe src="src/iframe-fake.html"></iframe>
+        <p>
+          Iframe should see the parent.
+        </p>
+
+        <iframe src="src/iframe-fake.html" nwfaketop></iframe>
+        <p>
+          Iframe should think it is the top-most parent.
+        </p>
+
+        <iframe src="src/iframe-user-agent.html"></iframe>
+        <p>
+          Shows a normal user agent.
+        </p>
+
+        <iframe src="src/iframe-user-agent.html" nwUserAgent="Custom User Agent"></iframe>
+        <p>
+          Shows customized user agent text.
+        </p>
+      </div>
     </fieldset>
 
     <script>
@@ -199,7 +220,6 @@
       function domChanges () {
         const fileInput = document.getElementById('file-select');
         const fileOutput = document.getElementById('selected-file');
-        const folderOutput = document.getElementById('selected-folder');
         fileInput.addEventListener('change', function (evt) {
           const selectedFile = evt.target.files[0].path;
           fileOutput.innerText = selectedFile;
@@ -207,11 +227,20 @@
           assert(path.isAbsolute(fileInput.value), true);
         });
         const folderInput = document.getElementById('folder-select');
+        const folderOutput = document.getElementById('selected-folder');
         folderInput.addEventListener('change', function (evt) {
           const selectedFolder = evt.target.files[0].path;
           folderOutput.innerText = selectedFolder;
           assert(fs.lstatSync(selectedFolder).isFile(), false);
           assert(fs.lstatSync(folderInput.value).isFile(), false);
+        });
+        const saveAsInput = document.getElementById('save-as-select');
+        const saveAsOutput = document.getElementById('selected-save-as');
+        saveAsInput.addEventListener('change', function (evt) {
+          const selectedFile = evt.target.files[0].path;
+          saveAsOutput.innerText = selectedFile;
+          assert(path.isAbsolute(selectedFile), true);
+          assert(path.isAbsolute(saveAsInput.value), true);
         });
       }
       domChanges();

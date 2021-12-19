@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Iframe nwdisable</title>
+    <link rel="stylesheet" href="../sanity.css" />
+  </head>
+  <body>
+    <script>
+      let message = 'Node is not accessible.';
+      if (window.nw || window.process || window.require) {
+        message = 'Node is accessible.';
+      }
+      document.write('<p>' + message + '</p>');
+    </script>
+  </body>
+</html>
