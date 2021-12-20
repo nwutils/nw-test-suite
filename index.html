@@ -122,6 +122,18 @@
       </div>
     </fieldset>
 
+    <fieldset>
+      <legend>Node Console</legend>
+      <ul>
+        <li>
+          Right-Click > Inspect Background Page
+          <ul>
+            <li>Ensure the Node console shows a log, info, warning, and error.</li>
+          </ul>
+        </li>
+      </ul>
+    </fieldset>
+
     <script>
       const win = nw.Window.get();
       win.showDevTools();
@@ -239,6 +251,16 @@
         });
       }
       domChanges();
+
+      /**
+       * Changes to Node
+       * https://nwjs.readthedocs.io/en/latest/References/Changes%20to%20Node
+       */
+      function nodeChanges () {
+        const nodeContext = require('./src/node-context.js');
+        nodeContext.consoleLogs();
+      }
+      nodeChanges();
     </script>
   </body>
 </html>
