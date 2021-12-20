@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>API sanity check</title>
-    <link rel="stylesheet" href="sanity.css" />
+    <link rel="stylesheet" href="src/sanity.css" />
   </head>
   <body>
-    <h1><strong>NW.js</strong> <script>document.write(process.versions.nw)</script></h1>
+    <h1><strong>NW.js</strong> <script>document.write(process.versions.nw + '-' + process.versions['nw-flavor'])</script></h1>
     <h2><strong>Chromium</strong> <script>document.write(process.versions.chromium)</script></h2>
     <h2><strong>Node.js</strong> <script>document.write(process.version)</script></h2>
 
@@ -133,6 +133,8 @@
         </li>
       </ul>
     </fieldset>
+
+    <footer></footer>
 
     <script>
       const win = nw.Window.get();

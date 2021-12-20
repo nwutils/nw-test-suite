@@ -78,6 +78,9 @@ iframe {
     height: 69px;
     border: 0px;
 }
+footer {
+  min-height: 10px;
+}
 .halves > * {
     display: inline-block;
     width: calc(50% - 4px);
