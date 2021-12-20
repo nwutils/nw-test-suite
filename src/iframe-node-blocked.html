@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html class="iframe">
+  <head>
+    <meta charset="utf-8">
+    <title>Iframe nwdisable</title>
+    <link rel="stylesheet" href="../sanity.css" />
+  </head>
+  <body>
+    <div class="flex-center">
+      <script>
+        let message = 'Node is not accessible.';
+        let className = 'bg-success';
+        if (window.nw || window.process || window.require) {
+          message = 'Node is accessible.';
+          className = 'bg-fail';
+        }
+        document.write('<p>' + message + '</p>');
+        document.body.classList.add(className);
+      </script>
+    </div>
+  </body>
+</html>

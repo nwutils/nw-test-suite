@@ -50,80 +50,75 @@
     <fieldset>
       <legend>File inputs</legend>
       <div class="halves">
-        <label>
-          File Select
-          <input
-            id="file-select"
-            type="file"
-          >
-        </label>
-        <p>
-          Selected files should have a full file path, not relative, or with "fake" in the path.
-          <strong id="selected-file"></strong>
-        </p>
+        <div>
+          <label>
+            File Select
+            <input
+              id="file-select"
+              type="file"
+            >
+          </label>
+        </div>
+        <div>
+          <p>
+            Selected files should have a full file path, not relative, or with "fake" in the path.
+            <strong id="selected-file"></strong>
+          </p>
+        </div>
 
-        <label>
-          Folder select
-          <input
-            id="folder-select"
-            type="file"
-            nwdirectory
-            nwdirectorydesc="Sanity Description"
-            nwworkingdir="C:\Users"
-          >
-        </label>
-        <p>
-          Should show "Sanity Description" as window title and "C:\Users" as the starting folder.
-          <strong id="selected-folder"></strong>
-        </p>
+        <div>
+          <label>
+            Folder select
+            <input
+              id="folder-select"
+              type="file"
+              nwdirectory
+              nwdirectorydesc="Sanity Description"
+              nwworkingdir="C:\Users"
+            >
+          </label>
+        </div>
+        <div>
+          <p>
+            Should show "Sanity Description" as window title and "C:\Users" as the starting folder.
+            <strong id="selected-folder"></strong>
+          </p>
+        </div>
 
-        <label>
-          Save-As select
-          <input
-            id="save-as-select"
-            type="file"
-            nwsaveas="sanity.txt"
-          >
-        </label>
-        <p>
-          Should show "Save as" as window title with "sanity.txt" as file name default.
-          <strong id="selected-save-as"></strong>
-        </p>
+        <div>
+          <label>
+            Save-As select
+            <input
+              id="save-as-select"
+              type="file"
+              nwsaveas="sanity.txt"
+            >
+          </label>
+        </div>
+        <div>
+          <p>
+            Should show "Save as" as window title with "sanity.txt" as file name default.
+            <strong id="selected-save-as"></strong>
+          </p>
+        </div>
       </div>
     </fieldset>
 
     <fieldset>
       <legend>IFrames</legend>
+      <p class="mb-sm">
+        These should all be green.
+      </p>
+
       <div class="halves">
-        <iframe src="src/iframe.html"></iframe>
-        <p>
-          Node <strong>should</strong> be accessible in this iframe.
-        </p>
+        <iframe src="src/iframe-node-accessible.html"></iframe>
+        <iframe src="src/iframe-node-blocked.html" nwdisable></iframe>
 
-        <iframe src="src/iframe.html" nwdisable></iframe>
-        <p>
-          Node <strong>should not</strong> be accessible in this iframe.
-        </p>
+        <iframe src="src/iframe-parent-accessed.html"></iframe>
+        <iframe src="src/iframe-parent-blocked.html" nwfaketop></iframe>
 
-        <iframe src="src/iframe-fake.html"></iframe>
-        <p>
-          Iframe should see the parent.
-        </p>
-
-        <iframe src="src/iframe-fake.html" nwfaketop></iframe>
-        <p>
-          Iframe should think it is the top-most parent.
-        </p>
-
-        <iframe src="src/iframe-user-agent.html"></iframe>
-        <p>
-          Shows a normal user agent.
-        </p>
-
-        <iframe src="src/iframe-user-agent.html" nwUserAgent="Custom User Agent"></iframe>
-        <p>
-          Shows customized user agent text.
-        </p>
+        <iframe src="src/iframe-user-agent-real.html"></iframe>
+        <iframe src="src/iframe-user-agent-mocked.html" nwUserAgent="Custom User Agent"></iframe>
       </div>
     </fieldset>
 

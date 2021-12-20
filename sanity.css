@@ -12,6 +12,13 @@ html {
 body {
     font-family: monospace, system-ui;
 }
+html,
+body,
+.iframe,
+.iframe body {
+    height: 100%;
+}
+
 h1 {
     font-size: 36px;
 }
@@ -25,7 +32,9 @@ button,
 input,
 label,
 legend,
-p {
+li,
+p,
+ul {
     font-size: 14px;
 }
 strong {
@@ -66,14 +75,40 @@ code {
 iframe {
     display: inline-block;
     width: 100%;
-    height: 40px;
-    border: 1px solid #000;
-}
-.halves {
+    height: 69px;
+    border: 0px;
 }
 .halves > * {
     display: inline-block;
-    width: calc(50% - 8px);
-    margin: 0px 0px 20px 8px;
+    width: calc(50% - 4px);
+    margin-bottom: 20px;
     vertical-align: middle;
+}
+.halves > *:nth-of-type(odd) {
+    margin-right: 8px;
+}
+.bg-success {
+    background: #AFA;
+}
+.bg-fail {
+    background: #FAA;
+}
+.mb-sm {
+    margin-bottom: 10px;
+}
+.iframe {
+    min-height: 100%;
+    border: 1px solid #000;
+}
+.iframe,
+.iframe body {
+    margin: 0px;
+}
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
 }

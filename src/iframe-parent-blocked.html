@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html class="iframe">
+  <head>
+    <meta charset="utf-8">
+    <title>Iframe nwfaketop</title>
+    <link rel="stylesheet" href="../sanity.css" />
+  </head>
+  <body>
+    <div class="flex-center">
+      <script>
+        let className = 'bg-fail';
+        const title = window.top.document.title;
+        const index = 'API sanity check';
+        const indexFake = 'Iframe nwfaketop';
+        let message = 'If you are seeing this, you probably changed the title on one of the pages.';
+        if (title === index) {
+          message = 'Iframe can access the parent.';
+        }
+        if (title === indexFake) {
+          message = 'Iframe thinks it is the top.';
+          className = 'bg-success';
+        }
+        document.write('<p>' + message + '</p>');
+        document.body.classList.add(className);
+      </script>
+    </div>
+  </body>
+</html>
