@@ -136,6 +136,14 @@
       </ul>
     </fieldset>
 
+    <fieldset>
+      <legend>Clipboard</legend>
+      <button id="clipboard-button">Validate clipboard API (will clear your clipboard contents)</button>
+      <p>
+        <strong id="clipboard-result"></strong>
+      </p>
+    </fieldset>
+
     <footer></footer>
 
     <script>
@@ -265,6 +273,39 @@
         nodeContext.consoleLogs();
       }
       nodeChanges();
+
+      /**
+       * Clipboard API
+       * https://nwjs.readthedocs.io/en/latest/References/Clipboard
+       */
+      function clipboard () {
+        const button = document.getElementById('clipboard-button');
+        const output = document.getElementById('clipboard-result');
+        button.addEventListener('click', function () {
+          let result = 'Successfully wrote, read, and cleared clipboard.';
+
+          const systemClipboard = nw.Clipboard.get();
+          systemClipboard.clear();
+          systemClipboard.set('Test', 'text');
+
+          const types = systemClipboard.readAvailableTypes();
+          if (JSON.stringify(types) !== '["text"]') {
+            result = 'Innacurate available types';
+            console.log({ availableTypes: types });
+          }
+
+          if (systemClipboard.get('text') !== 'Test') {
+            result = 'Failed to write or read from the clipboard';
+          }
+
+          systemClipboard.clear();
+          if (systemClipboard.get('text') !== '') {
+            result = 'Failed to clear clipboard.';
+          }
+          output.innerText = result;
+        });
+      }
+      clipboard();
     </script>
   </body>
 </html>

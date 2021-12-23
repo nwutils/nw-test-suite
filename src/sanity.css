@@ -53,7 +53,8 @@ p {
     padding: 0px;
 }
 hr {
-    border:  1px solid #000;
+    border: 1px solid #000;
+    margin: 20px 0px;
 }
 fieldset {
     border-color: #FFF;
