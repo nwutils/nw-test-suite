@@ -14,6 +14,18 @@ It's more of a smoke test, not super thorough. Also I just started it and there 
 1. Manual tests are in the window with instructions.
 
 
+## Short term goal:
+
+* Get the whole API mocked out for Windows on 0.59.0
+
+
+## Long term goals:
+
+* Make it work on OSX and Linux too
+* Make it work on another version of NW.js so all you need to do is update the version number in the `package.json` to test things out on different versions.
+* Find a way to make more things automated that are presently manual.
+
+
 ### Questions
 
 * `nw.App.clearAppCache('');` - Don't know what to pass into this function. Docs just say "manifest_url"?

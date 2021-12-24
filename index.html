@@ -36,12 +36,14 @@
 
     <fieldset>
       <legend>Global Shortcuts</legend>
-      <button onclick="registerShortcut()">
-        nw.App.registerGlobalHotKey('Ctrl+Shift+H');
-      </button>
-      <button onclick="unregisterShortcut()">
-        nw.App.unregisterGlobalHotKey('Ctrl+Shift+H');
-      </button>
+      <div class="mb-sm">
+        <button id="register-shortcut">
+          nw.App.registerGlobalHotKey('Ctrl+Shift+H');
+        </button>
+        <button id="unregister-shortcut">
+          nw.App.unregisterGlobalHotKey('Ctrl+Shift+H');
+        </button>
+      </div>
       <p>
         Try pressing <code>CTRL + SHIFT + H</code> on your desktop to see if it focuses this window and shows an alert (or not) based on if you registered or unregistered it.
       </p>
@@ -183,7 +185,7 @@
         nw.App.clearAppCache('');
         // NOTE: So how I think this works is if you have not updated the component then it is false and
         // '0.0.0.0'. But once you update it, it's `true` and '4.10.2391.0' on every load? I don't know.
-        // Will need to mock out somehting for that 4.10 version number, as I'm sure it will change.
+        // Will need to mock out somehting for that 4.10 version number, no doubt it'll change.
         nw.App.updateComponent('WIDEVINE', function (success) {
           assert(typeof(success), 'boolean');
           nw.App.enableComponent('WIDEVINE', function (version) {
@@ -199,29 +201,37 @@
         nw.App.addOriginAccessWhitelistEntry('http://github.com/', 'chrome-extension', location.host, true);
         nw.App.removeOriginAccessWhitelistEntry('http://github.com/', 'chrome-extension', location.host, true);
 
-        const shortcut = new nw.Shortcut({
-          key : 'Ctrl+Shift+H',
-          active : function () {
-            nw.Window.get().focus();
-            alert('Global desktop keyboard shortcut: ' + this.key + ' active.');
-          },
-          failed : function (msg) {
-            console.log(msg);
-          }
-        });
-        function registerShortcut () {
-          nw.App.registerGlobalHotKey(shortcut);
+        function testGlobalShortcuts () {
+          const shortcut = new nw.Shortcut({
+            key : 'Ctrl+Shift+H',
+            active : function () {
+              nw.Window.get().focus();
+              alert('Global desktop keyboard shortcut: ' + this.key + ' active.');
+            },
+            failed : function (msg) {
+              console.log(msg);
+            }
+          });
 
-          shortcut.on('active', function () {
-            console.log('Global desktop keyboard shortcut: ' + this.key + ' active.');
+          const registerShortcutButton = document.getElementById('register-shortcut');
+          const unregisterShortcutButton = document.getElementById('unregister-shortcut');
+
+          registerShortcutButton.addEventListener('click', function registerShortcut () {
+            nw.App.registerGlobalHotKey(shortcut);
+
+            shortcut.on('active', function () {
+              console.log('Global desktop keyboard shortcut: ' + this.key + ' active.');
+            });
+            shortcut.on('failed', function (msg) {
+              console.log(msg);
+            });
           });
-          shortcut.on('failed', function (msg) {
-            console.log(msg);
+
+          unregisterShortcutButton.addEventListener('click', function () {
+            nw.App.unregisterGlobalHotKey(shortcut);
           });
         }
-        function unregisterShortcut () {
-          nw.App.unregisterGlobalHotKey(shortcut);
-        }
+        testGlobalShortcuts();
 
         nw.App.on('open', function (evt) {
           console.log('nw.App.open Event', evt);
