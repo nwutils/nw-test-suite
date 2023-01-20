@@ -17,15 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3.3.0
 
-      - name: Setup Node
-        uses: actions/setup-node@v3.6.0
-        with:
-          node-version: "19.4.0"
-          cache: "npm"
-
-      - name: Install Node modules
-        run: npm ci
-
       - name: Setup Python3
         uses: actions/setup-python@v4.5.0
         with:
@@ -40,4 +31,13 @@ jobs:
         run: poetry install
 
       - name: Run NW API tests
-        run: python3 -m unittest ./nw/**/*.py
+        run: poetry shell && poetry run python3 -m unittest ./nw/**/*.py
+
+      - name: Setup Node
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: "19.4.0"
+          cache: "npm"
+
+      - name: Install Node modules
+        run: npm ci
