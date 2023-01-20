@@ -18,6 +18,8 @@ class TestWindow(TestCase):
         testdir = os.path.dirname(os.path.abspath(__file__))
         os.chdir(testdir)
 
+        print("PWD: ", os.getcwd())
+
         os.environ['CHROMEDRIVER'] = '../../node_modules/nw/nwjs/chromedriver'
 
         self.driver = webdriver.Chrome(executable_path=os.environ["CHROMEDRIVER"], options=chrome_options)
