@@ -30,8 +30,8 @@ jobs:
       - name: Install Poetry dependencies
         run: poetry install
 
-      - name: Run NW API tests
-        run: poetry shell && poetry run python3 -m unittest ./nw/**/*.py
+      - name: Enter Poetry shell
+        run: poetry shell
 
       - name: Setup Node
         uses: actions/setup-node@v3.6.0
@@ -41,3 +41,6 @@ jobs:
 
       - name: Install Node modules
         run: npm ci
+
+      - name: Run NW API tests
+        run: poetry run python3 -m unittest ./nw/**/*.py
