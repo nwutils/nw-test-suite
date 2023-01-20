@@ -29,11 +29,12 @@ jobs:
       - name: Setup Python3
         uses: actions/setup-python@v4.5.0
         with:
-          python-version: "3.10"
-          cache: "poetry"
+          python-version: "3.11"
 
       - name: Install Poetry
-        run: curl -sSL https://install.python-poetry.org | python3 -
+        uses: Gr1N/setup-poetry@v8
+        with:
+          poetry-version: "1.3.2"
 
       - name: Run NW API tests
         run: python3 -m unittest ./nw/**/*.py
