@@ -11,12 +11,10 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 class TestWindow(TestCase):
 
     def setUp(self):
-        os.environ['CHROMEDRIVER'] = "../../node_modules/nw/nwjs/chromedriver"
-
         chrome_options = Options()
         chrome_options.add_argument("nwapp=" + os.path.dirname(os.path.abspath(__file__)))
-        chrome_options.add_argument('--remote-debugging-port=9222')
-        # chrome_options.binary_location = os.environ['CHROMEDRIVER']
+        chrome_options.binary_location = "../../node_modules/nw/nwjs/nw"
+        os.environ['CHROMEDRIVER'] = "../../node_modules/nw/nwjs/chromedriver"
 
         testdir = os.path.dirname(os.path.abspath(__file__))
         os.chdir(testdir)
