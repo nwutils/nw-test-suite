@@ -30,9 +30,6 @@ jobs:
       - name: Install Poetry dependencies
         run: poetry install
 
-      - name: Enter Poetry shell
-        run: poetry shell
-
       - name: Setup Node
         uses: actions/setup-node@v3.6.0
         with:
