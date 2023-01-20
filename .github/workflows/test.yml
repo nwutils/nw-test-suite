@@ -36,5 +36,8 @@ jobs:
         with:
           poetry-version: "1.3.2"
 
+      - name: Install Poetry dependencies
+        run: poetry install
+
       - name: Run NW API tests
         run: python3 -m unittest ./nw/**/*.py
