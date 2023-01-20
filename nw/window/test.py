@@ -13,13 +13,12 @@ class TestWindow(TestCase):
     def setUp(self):
         chrome_options = Options()
         chrome_options.add_argument("nwapp=" + os.path.dirname(os.path.abspath(__file__)))
-        chrome_options.add_argument('--headless')
-        chrome_options.binary_location = "../../node_modules/nw/nwjs/chromedriver"
+        # chrome_options.add_argument('--headless')
 
         testdir = os.path.dirname(os.path.abspath(__file__))
         os.chdir(testdir)
 
-        self.driver = webdriver.Chrome(options=chrome_options)
+        self.driver = webdriver.Chrome(executable_path="../../node_modules/nw/nwjs/chromedriver", options=chrome_options)
 
     def test_window_height(self):
         try:
