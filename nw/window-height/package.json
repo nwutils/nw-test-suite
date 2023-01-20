@@ -1,0 +1,8 @@
+{
+    "name": "window-height",
+    "main": "index.html",
+    "window": {
+        "height": 100,
+        "width": 100
+    }
+}
