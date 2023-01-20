@@ -16,28 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.3.0
-
-      - name: Setup Python3
-        uses: actions/setup-python@v4.5.0
+      - uses: actions/setup-python@v4.5.0
         with:
           python-version: "3.10"
-
-      - name: Install Poetry
-        uses: Gr1N/setup-poetry@v8
+      - uses: Gr1N/setup-poetry@v8
         with:
           poetry-version: "1.3.2"
-
-      - name: Install Poetry dependencies
-        run: poetry install
-
-      - name: Setup Node
-        uses: actions/setup-node@v3.6.0
+      - run: poetry install
+      - uses: actions/setup-node@v3.6.0
         with:
           node-version: "19.4.0"
           cache: "npm"
-
-      - name: Install Node modules
-        run: npm ci
-
-      - name: Run NW API tests
-        run: poetry run python3 -m unittest ./nw/**/*.py
+      - run: npm ci
+      - run: poetry run python3 -m unittest ./nw/**/*.py
