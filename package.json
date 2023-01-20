@@ -5,6 +5,9 @@
     "start": "nw ."
   },
   "devDependencies": {
-    "nw": "0.59.0-sdk"
+    "nw": "0.72.0-sdk"
+  },
+  "engines": {
+    "node": ">=19.3.0"
   }
 }

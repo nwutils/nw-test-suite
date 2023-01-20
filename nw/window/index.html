@@ -1,0 +1,18 @@
+<html>
+
+<head>
+    <script>
+        window.onload = function () {
+            const nwWindow = nw.Window.get();
+            document.getElementById("nw-window-height").innerHTML = nwWindow.height;
+            document.getElementById("nw-window-width").innerHTML = nwWindow.width;
+        }
+    </script>
+</head>
+
+<body>
+    <span id="nw-window-height"></span>
+    <span id="nw-window-width"></span>
+</body>
+
+</html>
