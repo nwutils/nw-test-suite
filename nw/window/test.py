@@ -18,15 +18,11 @@ class TestWindow(TestCase):
         testdir = os.path.dirname(os.path.abspath(__file__))
         os.chdir(testdir)
 
-        print("PWD: ", os.getcwd())
-
         os.environ['CHROMEDRIVER'] = '../../node_modules/nw/nwjs/chromedriver'
 
         self.driver = webdriver.Chrome(executable_path=os.environ["CHROMEDRIVER"], options=chrome_options)
-        self.driver.implicitly_wait(5)
 
     def test_window_height(self):
-        self.driver.implicitly_wait(10)
         try:
             height_element = self.driver.find_element(By.ID, 'nw-window-height')
             height = height_element.get_attribute('innerHTML')
@@ -35,7 +31,6 @@ class TestWindow(TestCase):
             assert False
 
     def test_window_width(self):
-        self.driver.implicitly_wait(10)
         try:
             width_element = self.driver.find_element(By.ID, 'nw-window-width')
             width = width_element.get_attribute('innerHTML')
