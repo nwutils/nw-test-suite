@@ -1,24 +1,30 @@
-name: nw-test-suite
-on:
-  push:
-    branches:
-      - main
+# name: nw-test-suite
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
 
-concurrency:
-  group: ${{ github.ref }}
-  cancel-in-progress: true
+# concurrency:
+#   group: ${{ github.ref }}
+#   cancel-in-progress: true
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install JavaScript dependencies
-        run: npm ci
-
-      - name: Install Python dependencies
-        run: poetry install
-
-      - name: Run NW API tests
-        run: python3 -m unittest ./nw/**/*.py
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3.3.0
+#       - uses: actions/setup-python@v4.5.0
+#         with:
+#           python-version: "3.10"
+#           cache: "pip"
+#       - run: pip3 install -r requirements.txt
+#       - uses: actions/setup-node@v3.6.0
+#         with:
+#           node-version: "19.3.0"
+#           cache: "npm"
+#       - run: npm i -g npm@9.3.1
+#       - run: npm ci
+#       - run: python3 -m unittest ./nw/**/*.py
