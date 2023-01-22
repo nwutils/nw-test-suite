@@ -13,7 +13,11 @@ concurrency:
 
 jobs:
   test:
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        node-version: ["19.3.0"]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3.3.0
       - uses: actions/setup-node@v3.6.0
