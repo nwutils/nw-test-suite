@@ -2,17 +2,19 @@
 
 <head>
     <script>
-        window.onload = function () {
+        document.addEventListener("DOMContentLoaded", function () {
             const nwWindow = nw.Window.get();
             document.getElementById("nw-window-height").innerHTML = nwWindow.height;
             document.getElementById("nw-window-width").innerHTML = nwWindow.width;
-        }
+            document.getElementById("nw-window-id").innerHTML = nwWindow.id;
+        });
     </script>
 </head>
 
 <body>
     <span id="nw-window-height"></span>
     <span id="nw-window-width"></span>
+    <span id="nw-window-id"></span>
 </body>
 
 </html>
