@@ -17,7 +17,7 @@ describe("nw window tests", async () => {
       `nwapp=${relative(
         cwd(),
         relative(cwd(), dirname(import.meta.url).slice(7))
-      )} no-sandbox`
+      )}`
     );
 
     const service = new ServiceBuilder(
