@@ -8,7 +8,7 @@ import chrome from "selenium-webdriver/chrome.js";
 
 const { Driver, ServiceBuilder, Options } = chrome;
 
-describe("NW Window API tests", async () => {
+describe("nw window tests", async () => {
   let driver = undefined;
 
   before(async () => {
@@ -17,7 +17,7 @@ describe("NW Window API tests", async () => {
       `nwapp=${relative(
         cwd(),
         relative(cwd(), dirname(import.meta.url).slice(7))
-      )}`
+      )} no-sandbox`
     );
 
     const service = new ServiceBuilder(
