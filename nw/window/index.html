@@ -2,11 +2,11 @@
 
 <head>
     <script>
-        window.onload = function () {
+        document.addEventListener("DOMContentLoaded", function () {
             const nwWindow = nw.Window.get();
             document.getElementById("nw-window-height").innerHTML = nwWindow.height;
             document.getElementById("nw-window-width").innerHTML = nwWindow.width;
-        }
+        });
     </script>
 </head>
 
