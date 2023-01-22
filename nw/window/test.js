@@ -54,13 +54,13 @@ describe("nw window tests", async () => {
   it("window x", async () => {
     const xElement = await driver.findElement(By.id("nw-window-x"));
     const x = await xElement.getText();
-    equal(x, 100);
+    equal(x, "100");
   });
 
   it("window y", async () => {
     const yElement = await driver.findElement(By.id("nw-window-y"));
     const y = await yElement.getText();
-    equal(y, 100);
+    equal(y, "100");
   });
 
   after(() => {
