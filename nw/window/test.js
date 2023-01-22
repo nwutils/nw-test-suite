@@ -27,22 +27,40 @@ describe("nw window tests", async () => {
     driver = Driver.createSession(options, service);
   });
 
-  it("get window height", async () => {
+  it("window height", async () => {
     const heightElement = await driver.findElement(By.id("nw-window-height"));
     const height = await heightElement.getText();
     equal(height, "100");
   });
 
-  it("get window width", async () => {
+  it("window width", async () => {
     const widthElement = await driver.findElement(By.id("nw-window-width"));
     const width = await widthElement.getText();
     equal(width, "100");
   });
 
-  it("get window id", async () => {
+  it("window id", async () => {
     const idElement = await driver.findElement(By.id("nw-window-id"));
     const id = await idElement.getText();
     equal(typeof id, "string");
+  });
+
+  it("window title", async () => {
+    const titleElement = await driver.findElement(By.id("nw-window-title"));
+    const title = await titleElement.getText();
+    equal(title, "Window");
+  });
+
+  it("window x", async () => {
+    const xElement = await driver.findElement(By.id("nw-window-x"));
+    const x = await xElement.getText();
+    equal(x, 100);
+  });
+
+  it("window y", async () => {
+    const yElement = await driver.findElement(By.id("nw-window-y"));
+    const y = await yElement.getText();
+    equal(y, 100);
   });
 
   after(() => {

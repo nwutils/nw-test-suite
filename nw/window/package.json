@@ -3,7 +3,10 @@
     "main": "index.html",
     "window": {
         "height": 100,
-        "width": 100
+        "width": 100,
+        "title": "Window",
+        "x": 100,
+        "y": 100
     },
     "type": "module"
 }
