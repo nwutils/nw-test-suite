@@ -18,6 +18,8 @@ describe("nw window tests", async () => {
         cwd(),
         relative(cwd(), dirname(import.meta.url).slice(7))
       )}`,
+      "--headless",
+      "--no-sandbox",
     ]
     if (platform === "linux") {
       args.push("--disable-dev-shm-usage");
