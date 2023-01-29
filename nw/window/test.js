@@ -20,6 +20,7 @@ describe("nw window tests", async () => {
       )}`,
       "--headless",
       "--no-sandbox",
+      "--remote-debugging-port=9222",
     ]
     if (platform === "linux") {
       args.push("--disable-dev-shm-usage");
