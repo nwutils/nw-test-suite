@@ -1,9 +1,10 @@
 {
   "name": "nw-api-sanity-check",
   "main": "index.html",
+  "private": true,
   "scripts": {
-    "start": "nw .",
-    "test": "node --test-reporter=spec --test nw"
+    "manual": "nw .",
+    "start": "node --test-reporter=spec --test nw"
   },
   "devDependencies": {
     "nw": "0.74.0-sdk",
