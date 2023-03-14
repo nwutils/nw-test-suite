@@ -1,8 +1,5 @@
 name: nw-test-suite
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
