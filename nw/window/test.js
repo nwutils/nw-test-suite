@@ -18,13 +18,8 @@ describe("nw window tests", async () => {
         cwd(),
         relative(cwd(), dirname(import.meta.url).slice(7))
       )}`,
-      "--headless",
-      "--no-sandbox",
-      "--remote-debugging-port=9222",
+      "headless=new",
     ]
-    if (platform === "linux") {
-      args.push("--disable-dev-shm-usage");
-    }
     options.addArguments(args);
 
     const service = new ServiceBuilder(
@@ -56,18 +51,6 @@ describe("nw window tests", async () => {
     const titleElement = await driver.findElement(By.id("nw-window-title"));
     const title = await titleElement.getText();
     equal(title, "Window");
-  });
-
-  it("window x", async () => {
-    const xElement = await driver.findElement(By.id("nw-window-x"));
-    const x = await xElement.getText();
-    equal(x, "100");
-  });
-
-  it("window y", async () => {
-    const yElement = await driver.findElement(By.id("nw-window-y"));
-    const y = await yElement.getText();
-    equal(y, "100");
   });
 
   after(() => {

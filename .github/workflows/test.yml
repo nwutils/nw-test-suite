@@ -15,16 +15,16 @@ jobs:
   test:
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-        node-version: ["19.3.0"]
+        os: [macos-12, ubuntu-22.04, windows-2022]
+        node-version: ["19.7.0"]
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3.3.0
       - uses: actions/setup-node@v3.6.0
         with:
-          node-version: "19.3.0"
+          node-version: "19.7.0"
           cache: npm
-      - run: npm i -g npm@9.3.1
+      - run: npm i -g npm@9.6.1
       - run: npm ci
-      - run: npm t
+      - run: npm test
