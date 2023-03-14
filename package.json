@@ -6,7 +6,7 @@
     "test": "node --test nw"
   },
   "devDependencies": {
-    "nw": "0.74.0",
+    "nw": "0.74.0-sdk",
     "selenium-webdriver": "^4.7.1"
   },
   "engines": {
