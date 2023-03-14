@@ -1,17 +1,14 @@
 # nw-api-sanity-check
 
-This is a simple, manual testing suite, of the NW.js API.
-
-It's more of a smoke test, not super thorough. Also I just started it and there is much room for improvement.
+_WIP_ NW.js cross platform test suite using prebuilt binary to quickly test its API.
 
 
 ## Running Locally
 
 1. fork/clone/download
 1. `npm install`
-1. `npm start`
-1. Most tests are automated and will show in the console if they fail.
-1. Manual tests are in the window with instructions.
+1. `npm start` to run automated tests
+1. `npm manual` to run manual tests in the window (instructions provided)
 
 
 ## Short term goal:
