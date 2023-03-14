@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "nw": "0.74.0-sdk",
-    "selenium-webdriver": "^4.7.1"
+    "selenium-webdriver": "^4.8.1"
   },
   "engines": {
     "node": ">=19.7.0",
