@@ -3,7 +3,7 @@
   "main": "index.html",
   "scripts": {
     "start": "nw .",
-    "test": "node --test nw"
+    "test": "node --test-reporter=spec --test nw"
   },
   "devDependencies": {
     "nw": "0.74.0-sdk",

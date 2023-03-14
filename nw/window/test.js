@@ -8,7 +8,7 @@ import chrome from "selenium-webdriver/chrome.js";
 
 const { Driver, ServiceBuilder, Options } = chrome;
 
-describe("nw window tests", async () => {
+describe("nw.Window tests", async () => {
   let driver = undefined;
 
   before(async () => {
@@ -29,25 +29,25 @@ describe("nw window tests", async () => {
     driver = Driver.createSession(options, service);
   });
 
-  it("window height", async () => {
+  it("Window.height", async () => {
     const heightElement = await driver.findElement(By.id("nw-window-height"));
     const height = await heightElement.getText();
     equal(height, "100");
   });
 
-  it("window width", async () => {
+  it("Window.width", async () => {
     const widthElement = await driver.findElement(By.id("nw-window-width"));
     const width = await widthElement.getText();
     equal(width, "100");
   });
 
-  it("window id", async () => {
+  it("Window.id", async () => {
     const idElement = await driver.findElement(By.id("nw-window-id"));
     const id = await idElement.getText();
     equal(typeof id, "string");
   });
 
-  it("window title", async () => {
+  it("Window.title", async () => {
     const titleElement = await driver.findElement(By.id("nw-window-title"));
     const title = await titleElement.getText();
     equal(title, "Window");
