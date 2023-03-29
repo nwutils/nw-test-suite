@@ -2,13 +2,15 @@
   "name": "nw-api-sanity-check",
   "main": "index.html",
   "private": true,
+  "type": "module",
   "scripts": {
-    "manual": "nw .",
-    "start": "node --test-reporter=spec --test nw"
+    "postinstall": "nwbuild --mode=get --version=0.74.0 --flavor=sdk",
+    "manual": "nwbuild --mode=run --version=0.74.0 --flavor=sdk . --no-glob",
+    "start": "node --test-reporter=spec --test api"
   },
   "devDependencies": {
-    "nw": "0.74.0-sdk",
-    "selenium-webdriver": "^4.8.1"
+    "nw-builder": "^4.2.1",
+    "selenium-webdriver": "^4.8.2"
   },
   "engines": {
     "node": ">=19.7.0",

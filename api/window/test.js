@@ -6,12 +6,15 @@ import { cwd, platform } from "node:process";
 import { By } from "selenium-webdriver";
 import chrome from "selenium-webdriver/chrome.js";
 
+import { getPlatform } from "../../util.js";
+
 const { Driver, ServiceBuilder, Options } = chrome;
 
 describe("nw.Window tests", async () => {
   let driver = undefined;
 
   before(async () => {
+    const hostPlatform = await getPlatform(platform);
     const options = new Options();
     const args = [
       `nwapp=${relative(
@@ -23,7 +26,7 @@ describe("nw.Window tests", async () => {
     options.addArguments(args);
 
     const service = new ServiceBuilder(
-      `${cwd()}/node_modules/nw/nwjs/chromedriver`
+      `${cwd()}/nwjs-sdk-v0.74.0-${hostPlatform}-${arch}/chromedriver`
     ).build();
 
     driver = Driver.createSession(options, service);
