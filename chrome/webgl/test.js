@@ -8,7 +8,7 @@ import chrome from "selenium-webdriver/chrome.js";
 
 const { Driver, ServiceBuilder, Options } = chrome;
 
-describe("nw.Window tests", async () => {
+describe("chrome WebGL tests", async () => {
   let driver = undefined;
 
   before(async () => {
@@ -31,28 +31,10 @@ describe("nw.Window tests", async () => {
     driver = Driver.createSession(options, service);
   });
 
-  it("Window.height", async () => {
-    const heightElement = await driver.findElement(By.id("nw-window-height"));
-    const height = await heightElement.getText();
-    equal(height, "100");
-  });
-
-  it("Window.width", async () => {
-    const widthElement = await driver.findElement(By.id("nw-window-width"));
-    const width = await widthElement.getText();
-    equal(width, "100");
-  });
-
-  it("Window.id", async () => {
-    const idElement = await driver.findElement(By.id("nw-window-id"));
-    const id = await idElement.getText();
-    equal(typeof id, "string");
-  });
-
-  it("Window.title", async () => {
-    const titleElement = await driver.findElement(By.id("nw-window-title"));
-    const title = await titleElement.getText();
-    equal(title, "Window");
+  it("WebGL2 support", async () => {
+    const chromeWebGL = await driver.findElement(By.id("chrome-webgl"));
+    const status = await chromeWebGL.getText();
+    equal(status, "WebGL2 is supported.");
   });
 
   after(() => {

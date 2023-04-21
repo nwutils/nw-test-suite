@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="iframe">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Iframe nwUserAgent</title>
     <link rel="stylesheet" href="sanity.css" />
   </head>
@@ -13,9 +13,9 @@
           const agent = navigator.userAgent;
           document.write(agent);
 
-          let className = 'bg-fail';
-          if (agent.toLowerCase().includes('custom')) {
-            className = 'bg-success';
+          let className = "bg-fail";
+          if (agent.toLowerCase().includes("custom")) {
+            className = "bg-success";
           }
           document.body.classList.add(className);
         </script>
