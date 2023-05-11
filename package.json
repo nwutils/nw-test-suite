@@ -10,7 +10,7 @@
   "devDependencies": {
     "nw": "0.75.0-sdk",
     "prettier": "^2.8.7",
-    "selenium-webdriver": "^4.9.0"
+    "selenium-webdriver": "^4.9.2"
   },
   "engines": {
     "node": ">=19.7.0",
