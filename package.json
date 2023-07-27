@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "format": "prettier --write ./**/*",
+    "lint": "eslint --fix ./**/*",
     "manual": "nw .",
     "start": "node --test-reporter=spec --test nw chrome"
   },
   "devDependencies": {
+    "eslint": "^8.45.0",
     "nw": "0.78.0-sdk",
     "prettier": "^3.0.0",
     "selenium-webdriver": "^4.10.0"

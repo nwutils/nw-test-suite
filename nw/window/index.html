@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <script>
@@ -11,7 +11,8 @@
         document.getElementById("nw-window-x").innerHTML = nwWindow.x;
         document.getElementById("nw-window-y").innerHTML = nwWindow.y;
         nwWindow.on("devtools-closed", function () {
-          document.getElementById("nw-window-on-devtools-closed").innerHTML = "devtools-closed";
+          document.getElementById("nw-window-on-devtools-closed").innerHTML =
+            "devtools-closed";
         });
 
         await nwWindow.showDevTools();
