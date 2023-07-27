@@ -16,7 +16,7 @@ describe("nw.Window tests", async () => {
     const args = [
       `nwapp=${relative(
         cwd(),
-        relative(cwd(), dirname(import.meta.url).slice(7))
+        relative(cwd(), dirname(import.meta.url).slice(7)),
       )}`,
       "headless=new",
     ];
@@ -25,7 +25,7 @@ describe("nw.Window tests", async () => {
     const service = new ServiceBuilder(
       `${cwd()}/node_modules/nw/nwjs/chromedriver${
         platform === "win32" ? ".exe" : ""
-      }`
+      }`,
     ).build();
 
     driver = Driver.createSession(options, service);
@@ -53,6 +53,14 @@ describe("nw.Window tests", async () => {
     const titleElement = await driver.findElement(By.id("nw-window-title"));
     const title = await titleElement.getText();
     equal(title, "Window");
+  });
+
+  it("Window devtools-closed", async () => {
+    const devtoolsElement = await driver.findElement(
+      By.id("nw-window-on-devtools-closed"),
+    );
+    const devtools = await devtoolsElement.getText();
+    equal(devtools, "devtools-closed");
   });
 
   after(() => {
