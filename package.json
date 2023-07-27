@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "format": "prettier --write ./**/*",
-    "lint": "eslint --fix ./**/*",
+    "lint": "eslint --config=eslint.config.cjs --fix ./**/*.js",
     "manual": "nw .",
     "start": "node --test-reporter=spec --test nw chrome"
   },
