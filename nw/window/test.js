@@ -56,10 +56,6 @@ describe("nw.Window tests", async () => {
   });
 
   it("Window devtools-closed", async () => {
-    const nwWindow = nw.Window.get();
-    await nwWindow.showDevTools();
-    await nwWindow.closeDevTools();
-    
     const devtoolsElement = await driver.findElement(By.id("nw-window-on-devtools-closed"));
     const devtools = await devtoolsElement.getText();
     equal(devtools, "devtools-closed");
