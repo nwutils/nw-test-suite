@@ -10,6 +10,9 @@
         document.getElementById("nw-window-title").innerHTML = nwWindow.title;
         document.getElementById("nw-window-x").innerHTML = nwWindow.x;
         document.getElementById("nw-window-y").innerHTML = nwWindow.y;
+        nwWindow.on("devtools-closed", function () {
+          document.getElementById("nw-window-on-devtools-closed").innerHTML = "devtools-closed";
+        });
       });
     </script>
   </head>
@@ -21,5 +24,6 @@
     <span id="nw-window-title"></span>
     <span id="nw-window-x"></span>
     <span id="nw-window-y"></span>
+    <span id="nw-window-on-devtools-closed"></span>
   </body>
 </html>

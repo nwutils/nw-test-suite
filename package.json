@@ -8,12 +8,12 @@
     "start": "node --test-reporter=spec --test nw chrome"
   },
   "devDependencies": {
-    "nw": "0.75.0-sdk",
-    "prettier": "^2.8.7",
+    "nw": "0.78.0-sdk",
+    "prettier": "^3.0.0",
     "selenium-webdriver": "^4.10.0"
   },
   "engines": {
-    "node": ">=19.7.0",
-    "npm": ">=9.6.1"
+    "node": ">=20.3.0",
+    "npm": ">=9.8.1"
   }
 }
