@@ -9,16 +9,6 @@ _WIP_ NW.js cross platform test suite using prebuilt binary to quickly test its 
 1. `npm start` to run automated tests
 1. `npm manual` to run manual tests in the window (instructions provided)
 
-## Short term goal:
-
-- Get the whole API mocked out for Windows on 0.59.0
-
-## Long term goals:
-
-- Make it work on OSX and Linux too
-- Make it work on another version of NW.js so all you need to do is update the version number in the `package.json` to test things out on different versions.
-- Find a way to make more things automated that are presently manual.
-
 ### Questions
 
 - `nw.App.clearAppCache('');` - Don't know what to pass into this function. Docs just say "manifest_url"?

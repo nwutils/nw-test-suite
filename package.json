@@ -6,16 +6,17 @@
     "format": "prettier --write ./**/*",
     "lint": "eslint --config=eslint.config.cjs --fix ./**/*.js",
     "manual": "nw .",
-    "start": "node --test-reporter=spec --test nw chrome"
+    "start": "node --test-reporter=spec --test chrome nw"
   },
   "devDependencies": {
-    "eslint": "^8.45.0",
-    "nw": "0.78.0-sdk",
+    "eslint": "^8.46.0",
+    "nw": "0.78.1-sdk",
     "prettier": "^3.0.0",
-    "selenium-webdriver": "^4.10.0"
+    "selenium-webdriver": "^4.11.1"
   },
   "engines": {
-    "node": ">=20.3.0",
-    "npm": ">=9.8.1"
-  }
+    "node": "v20.5.0",
+    "npm": "9.8.1"
+  },
+  "packageManager": "npm@9.8.1"
 }
