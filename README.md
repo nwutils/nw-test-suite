@@ -9,15 +9,13 @@ _WIP_ NW.js cross platform test suite using prebuilt binary to quickly test its 
 1. `npm start` to run automated tests
 1. `npm manual` to run manual tests in the window (instructions provided)
 
-## Short term goal:
+### Known Issues
 
-- Get the whole API mocked out for Windows on 0.59.0
+`nw.Window.height`: Actual height is 28px more than user input height.
 
-## Long term goals:
+`nw.Window devtools-closed`: This event is currently not supported. It should be straight forward to add support for it.
 
-- Make it work on OSX and Linux too
-- Make it work on another version of NW.js so all you need to do is update the version number in the `package.json` to test things out on different versions.
-- Find a way to make more things automated that are presently manual.
+`Chromedriver`: Fails for Windows. Need to investigate.
 
 ### Questions
 
