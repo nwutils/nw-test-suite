@@ -1,6 +1,6 @@
 import { equal } from "node:assert";
 import { after, before, describe, it } from "node:test";
-import { dirname, relative } from "node:path";
+import { dirname, relative, resolve } from "node:path";
 import { cwd, platform } from "node:process";
 
 import { By } from "selenium-webdriver";
@@ -23,9 +23,8 @@ describe("nw.Window tests", async () => {
     options.addArguments(args);
 
     const service = new ServiceBuilder(
-      `${cwd()}/node_modules/nw/nwjs/chromedriver${
-        platform === "win32" ? ".exe" : ""
-      }`,
+      resolve("node_modules", "nw", "nwjs", `chromedriver${platform === "win32" ? ".exe" : ""
+        }`)
     ).build();
 
     driver = Driver.createSession(options, service);
