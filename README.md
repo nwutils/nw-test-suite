@@ -13,6 +13,8 @@ _WIP_ NW.js cross platform test suite using prebuilt binary to quickly test its 
 
 `nw.Window.height`: Actual height is 28px more than user input height.
 
+`nw.Window devtools-closed`: This event is currently not supported. It should be straight forward to add support for it.
+
 ### Questions
 
 - `nw.App.clearAppCache('');` - Don't know what to pass into this function. Docs just say "manifest_url"?
