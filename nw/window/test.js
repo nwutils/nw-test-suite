@@ -23,8 +23,12 @@ describe("nw.Window tests", async () => {
     options.addArguments(args);
 
     const service = new ServiceBuilder(
-      resolve("node_modules", "nw", "nwjs", `chromedriver${platform === "win32" ? ".exe" : ""
-        }`)
+      resolve(
+        "node_modules",
+        "nw",
+        "nwjs",
+        `chromedriver${platform === "win32" ? ".exe" : ""}`,
+      ),
     ).build();
 
     driver = Driver.createSession(options, service);
