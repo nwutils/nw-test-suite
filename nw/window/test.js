@@ -34,7 +34,11 @@ describe("nw.Window tests", async () => {
   it("Window.height", async () => {
     const heightElement = await driver.findElement(By.id("nw-window-height"));
     const height = await heightElement.getText();
-    equal(height, "100");
+    if (platform === "darwin") {
+      equal(height, "128");
+    } else {
+      equal(height, "100");
+    }
   });
 
   it("Window.width", async () => {

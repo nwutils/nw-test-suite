@@ -9,6 +9,10 @@ _WIP_ NW.js cross platform test suite using prebuilt binary to quickly test its 
 1. `npm start` to run automated tests
 1. `npm manual` to run manual tests in the window (instructions provided)
 
+### Known Issues
+
+`nw.Window.height`: Actual height is 28px more than user input height.
+
 ### Questions
 
 - `nw.App.clearAppCache('');` - Don't know what to pass into this function. Docs just say "manifest_url"?
