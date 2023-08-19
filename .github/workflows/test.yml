@@ -28,7 +28,7 @@ jobs:
           node-version: "20.5.0"
           cache: "npm"
       - run: corepack enable
-      - run: npm i
+      - run: npm ci
       - run: npm run ci:fmt
       - run: npm run ci:lnt
       - run: npm start
