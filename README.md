@@ -11,11 +11,25 @@ _WIP_ NW.js cross platform test suite using prebuilt binary to quickly test its 
 
 ### Known Issues
 
-`nw.Window.height`: Actual height is 28px more than user input height.
+API: `nw.Window.*`
+Platform: N/A
+Issue: Not an issue but potential improvement.
+Todo: Test each `nw.Window.*` component separately.
 
-`nw.Window devtools-closed`: This event is currently not supported. It should be straight forward to add support for it.
+API: `nw.Window.height`
+Platform: MacOS
+Issue: Actual height is 28px more than user input height.
+Todo: Fix this behavior in upstream
 
-`Chromedriver`: Fails for Windows. Need to investigate.
+API: `nw.Window.on devtools-closed`
+Platform: All
+Issue: This event is currently not supported.
+Todo: Use `nw-build-tools` to run debug build and test if it works.
+
+API: `Chromedriver`
+Platform: Windows
+Issue: Fails for Windows. Need to investigate.
+Todo: Maybe find Chromedriver path via `nw` Node module's `findpath` function?
 
 ### Questions
 
