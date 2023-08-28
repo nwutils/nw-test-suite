@@ -11,7 +11,7 @@
     "start": "node --test-reporter=spec --test chrome nw"
   },
   "devDependencies": {
-    "eslint": "^8.47.0",
+    "eslint": "^8.48.0",
     "nw": "0.79.0-sdk",
     "prettier": "^3.0.2",
     "selenium-webdriver": "^4.11.1"
