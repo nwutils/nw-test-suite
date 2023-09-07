@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "eslint": "8.48.0",
-    "nw": "0.79.0-sdk",
+    "nw": "0.79.1",
     "prettier": "3.0.3",
     "selenium-webdriver": "4.12.0"
   },
