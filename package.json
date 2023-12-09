@@ -14,7 +14,7 @@
     "eslint": "8.55.0",
     "nw": "0.82.0",
     "prettier": "3.1.0",
-    "selenium-webdriver": "4.15.0"
+    "selenium-webdriver": "4.16.0"
   },
   "engines": {
     "node": "v20.5.1",
