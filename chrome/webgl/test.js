@@ -14,14 +14,12 @@ describe("chrome WebGL tests", async () => {
 
   before(async () => {
     const options = new Options();
-    options.setChromeBinaryPath(findpath());
     const args = [
       `nwapp=${relative(
         cwd(),
         relative(cwd(), dirname(import.meta.url).slice(7)),
       )}`,
       "headless=new",
-      "sandbox=false",
     ];
     options.addArguments(args);
 
