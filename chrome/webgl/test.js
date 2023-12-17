@@ -14,6 +14,7 @@ describe("chrome WebGL tests", async () => {
 
   before(async () => {
     const options = new Options();
+    options.setChromeBinaryPath(findpath());
     const args = [
       `nwapp=${relative(
         cwd(),
