@@ -23,7 +23,7 @@ describe("nw.Window tests", async () => {
     ];
     options.addArguments(args);
 
-    const service = new ServiceBuilder(findpath()).build();
+    const service = new ServiceBuilder(findpath('chromedriver')).build();
 
     driver = Driver.createSession(options, service);
   });
