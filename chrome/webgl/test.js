@@ -1,8 +1,9 @@
 import { equal } from "node:assert";
 import { after, before, describe, it } from "node:test";
 import { dirname, relative } from "node:path";
-import { cwd, platform } from "node:process";
+import { cwd } from "node:process";
 
+import { findpath } from "nw";
 import { By } from "selenium-webdriver";
 import chrome from "selenium-webdriver/chrome.js";
 
@@ -22,11 +23,7 @@ describe("chrome WebGL tests", async () => {
     ];
     options.addArguments(args);
 
-    const service = new ServiceBuilder(
-      `${cwd()}/node_modules/nw/nwjs/chromedriver${
-        platform === "win32" ? ".exe" : ""
-      }`,
-    ).build();
+    const service = new ServiceBuilder(findpath("chromedriver")).build();
 
     driver = Driver.createSession(options, service);
   });

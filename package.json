@@ -3,22 +3,17 @@
   "main": "index.html",
   "private": true,
   "scripts": {
-    "ci:fmt": "prettier --check \"./**/*.{css,html,js,json,md,yml}\"",
-    "ci:lnt": "eslint --config=.github/eslint.config.cjs --ext \"./**/*.js\"",
-    "fmt": "prettier --write \"./**/*.{css,html,js,json,md,yml}\"",
-    "lnt": "eslint --config=.github/eslint.config.cjs --ext \"./**/*.js\"",
+    "lint": "eslint --config=.github/eslint.config.cjs --ext \"./**/*.js\"",
     "manual": "nw .",
     "start": "node --test-reporter=spec --test chrome nw"
   },
   "devDependencies": {
-    "eslint": "8.55.0",
+    "eslint": "8.56.0",
     "nw": "0.82.0",
-    "prettier": "3.1.0",
     "selenium-webdriver": "4.16.0"
   },
   "engines": {
-    "node": "v20.5.1",
-    "npm": "9.8.1"
+    "node": "v20.7.0"
   },
-  "packageManager": "npm@9.8.1"
+  "packageManager": "npm@10.2.5"
 }
