@@ -3,10 +3,7 @@
   "main": "index.html",
   "private": true,
   "scripts": {
-    "ci:fmt": "prettier --check \"./**/*.{css,html,js,json,md,yml}\"",
-    "ci:lnt": "eslint --config=.github/eslint.config.cjs --ext \"./**/*.js\"",
-    "fmt": "prettier --write \"./**/*.{css,html,js,json,md,yml}\"",
-    "lnt": "eslint --config=.github/eslint.config.cjs --ext \"./**/*.js\"",
+    "lint": "eslint --config=.github/eslint.config.cjs --ext \"./**/*.js\"",
     "manual": "nw .",
     "start": "node --test-reporter=spec --test chrome nw"
   },

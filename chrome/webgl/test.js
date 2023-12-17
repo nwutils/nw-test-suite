@@ -23,7 +23,7 @@ describe("chrome WebGL tests", async () => {
     ];
     options.addArguments(args);
 
-    const service = new ServiceBuilder(findpath('chromedriver')).build();
+    const service = new ServiceBuilder(findpath("chromedriver")).build();
 
     driver = Driver.createSession(options, service);
   });
