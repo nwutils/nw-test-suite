@@ -20,6 +20,7 @@ describe("nw.Window tests", async () => {
         relative(cwd(), dirname(import.meta.url).slice(7)),
       )}`,
       "headless=new",
+      "sandbox=false",
     ];
     options.addArguments(args);
 
