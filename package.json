@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "eslint": "8.56.0",
-    "nw": "0.82.0",
+    "nw": "0.83.0",
     "selenium-webdriver": "4.16.0"
   },
   "engines": {
