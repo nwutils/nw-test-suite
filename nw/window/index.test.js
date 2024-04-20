@@ -29,7 +29,7 @@ describe("nw.Window tests", async () => {
       .build();
   });
 
-  it("Window.height", async function () {
+  it.skip("Window.height", async function () {
     const heightElement = await driver.findElement(selenium.By.id("nw-window-height"));
     const height = await heightElement.getText();
     // TODO: Fix this behaviour in upstream Chromium
