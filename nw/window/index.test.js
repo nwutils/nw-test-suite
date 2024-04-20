@@ -29,13 +29,13 @@ describe("nw.Window tests", async () => {
       .build();
   });
 
-  it.skip("Window.height", async function () {
+  it.skipIf(process.platform === "win32")("Window.height", async function () {
     const heightElement = await driver.findElement(selenium.By.id("nw-window-height"));
     const height = await heightElement.getText();
     // TODO: Fix this behaviour in upstream Chromium
     if (process.platform === "darwin") {
       expect(height).toEqual("128");
-    } else if (process.platform === "win32"){
+    } else if (process.platform === "win32") {
       expect(height).toEqual("139");
     } else {
       expect(height).toEqual("100");
