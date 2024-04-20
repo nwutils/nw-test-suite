@@ -5,15 +5,12 @@
   "scripts": {
     "lint": "eslint --config=.github/eslint.config.cjs --ext \"./**/*.js\"",
     "manual": "nw .",
-    "start": "node --test-reporter=spec --test chrome nw"
+    "start": "vitest run --testTimeout=10000"
   },
   "devDependencies": {
     "eslint": "8.57.0",
-    "nw": "0.85.0",
-    "selenium-webdriver": "4.19.0"
-  },
-  "engines": {
-    "node": "v20.7.0"
-  },
-  "packageManager": "npm@10.2.5"
+    "nw": "0.86.0-3",
+    "selenium-webdriver": "4.19.0",
+    "vitest": "^1.5.0"
+  }
 }

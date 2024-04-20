@@ -12,22 +12,17 @@ jobs:
   test:
     strategy:
       matrix:
-        include:
-          - { os: macos-12, shell: bash }
-          - { os: ubuntu-22.04, shell: bash }
-          # - { os: windows-2022, shell: powershell }
+        os:
+          - macos-12
+          - ubuntu-22.04
+          - windows-2022
       fail-fast: false
     runs-on: ${{ matrix.os }}
-    defaults:
-      run:
-        shell: ${{ matrix.shell }}
     steps:
       - uses: actions/checkout@v4.1.3
       - uses: actions/setup-node@v4.0.2
         with:
-          node-version: "20.7.0"
-          cache: "npm"
-      - run: corepack enable
+          node-version: "21.1.0"
       - run: npm ci
       - run: npm run lint
       - run: npm start
