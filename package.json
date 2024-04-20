@@ -8,12 +8,8 @@
     "start": "node --test-reporter=spec --test chrome nw"
   },
   "devDependencies": {
-    "eslint": "9.1.0",
-    "nw": "0.86.0",
+    "eslint": "8.57.0",
+    "nw": "0.86.0-3",
     "selenium-webdriver": "4.19.0"
-  },
-  "engines": {
-    "node": "v20.7.0"
-  },
-  "packageManager": "npm@10.2.5"
+  }
 }
