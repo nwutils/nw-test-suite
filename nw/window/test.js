@@ -23,7 +23,7 @@ describe("nw.Window tests", async () => {
     ];
     options.addArguments(args);
 
-    const service = new ServiceBuilder(findpath('chromedriver')).build();
+    const service = new ServiceBuilder(await findpath('chromedriver', { flavor: 'sdk' })).build();
 
     driver = Driver.createSession(options, service);
   });
@@ -67,7 +67,7 @@ describe("nw.Window tests", async () => {
     equal(devtools, "");
   });
 
-  after(() => {
-    driver.quit();
+  after(async () => {
+    await driver.quit();
   });
 });

@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint --config=.github/eslint.config.cjs --ext \"./**/*.js\"",
     "manual": "nw .",
-    "start": "node --test-reporter=spec --test chrome nw"
+    "start": "node --test-reporter=spec --test chrome/**/*.js nw/**/*.js"
   },
   "devDependencies": {
     "eslint": "8.57.0",

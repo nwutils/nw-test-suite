@@ -23,7 +23,7 @@ describe("chrome WebGL tests", async () => {
     ];
     options.addArguments(args);
 
-    const service = new ServiceBuilder(findpath("chromedriver")).build();
+    const service = new ServiceBuilder(await findpath("chromedriver", { flavor: 'sdk' })).build();
 
     driver = Driver.createSession(options, service);
   });
@@ -34,7 +34,7 @@ describe("chrome WebGL tests", async () => {
     equal(status, "WebGL2 is supported.");
   });
 
-  after(() => {
-    driver.quit();
+  after(async () => {
+    await driver.quit();
   });
 });
