@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint --config=.github/eslint.config.cjs --ext \"./**/*.js\"",
     "manual": "nw .",
-    "start": "vitest run"
+    "start": "vitest run --testTimeout=10000"
   },
   "devDependencies": {
     "eslint": "8.57.0",

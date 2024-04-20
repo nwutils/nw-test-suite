@@ -29,7 +29,7 @@ describe("nw.Window tests", async () => {
       .build();
   });
 
-  it.skipIf(process.platform === "win32")("Window.height", async function () {
+  it("Window.height", async function () {
     const heightElement = await driver.findElement(selenium.By.id("nw-window-height"));
     const height = await heightElement.getText();
     // TODO: Fix this behaviour in upstream Chromium
@@ -42,7 +42,7 @@ describe("nw.Window tests", async () => {
     }
   });
 
-  it.skipIf(process.platform === "win32")("Window.width", async function () {
+  it("Window.width", async function () {
     const widthElement = await driver.findElement(selenium.By.id("nw-window-width"));
     const width = await widthElement.getText();
     if (process.platform === "win32") {
@@ -77,4 +77,4 @@ describe("nw.Window tests", async () => {
   afterAll(async function () {
     await driver.quit();
   });
-});
+}, { timeout: 30000 });
