@@ -35,6 +35,8 @@ describe("nw.Window tests", async () => {
     // TODO: Fix this behaviour in upstream Chromium
     if (process.platform === "darwin") {
       expect(height).toEqual("128");
+    } else if (process.platform === "win32"){
+      expect(height).toEqual("139");
     } else {
       expect(height).toEqual("100");
     }
