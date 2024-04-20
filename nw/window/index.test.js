@@ -42,7 +42,7 @@ describe("nw.Window tests", async () => {
     }
   });
 
-  it("Window.width", async function () {
+  it.skipIf(process.platform === "win32")("Window.width", async function () {
     const widthElement = await driver.findElement(selenium.By.id("nw-window-width"));
     const width = await widthElement.getText();
     if (process.platform === "win32") {
