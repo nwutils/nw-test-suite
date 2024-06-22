@@ -8,9 +8,9 @@
     "start": "vitest run --testTimeout=10000"
   },
   "devDependencies": {
-    "eslint": "8.57.0",
-    "nw": "0.86.0-3",
-    "selenium-webdriver": "4.19.0",
-    "vitest": "^1.5.0"
+    "eslint": "9.5.0",
+    "nw": "0.88.0",
+    "selenium-webdriver": "4.22.0",
+    "vitest": "^1.6.0"
   }
 }
