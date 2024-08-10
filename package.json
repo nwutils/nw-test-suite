@@ -3,13 +3,13 @@
   "main": "index.html",
   "private": true,
   "scripts": {
-    "lint": "eslint --config=.github/eslint.config.cjs --ext \"./**/*.js\"",
+    "postinstall": "base-volta-off-of-nwjs",
     "manual": "nw .",
     "start": "vitest run --testTimeout=10000"
   },
   "devDependencies": {
-    "eslint": "8.57.0",
-    "nw": "0.86.0-3",
+    "base-volta-off-of-nwjs": "^1.0.5",
+    "nw": "0.90.0",
     "selenium-webdriver": "4.19.0",
     "vitest": "^1.5.0"
   }
