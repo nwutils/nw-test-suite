@@ -12,5 +12,9 @@
     "nw": "0.90.0",
     "selenium-webdriver": "4.19.0",
     "vitest": "^1.5.0"
+  },
+  "volta": {
+    "npm": "10.8.2",
+    "node": "22.2.0"
   }
 }
