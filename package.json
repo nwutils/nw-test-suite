@@ -10,8 +10,8 @@
   "devDependencies": {
     "base-volta-off-of-nwjs": "^1.0.5",
     "nw": "0.91.0",
-    "selenium-webdriver": "4.24.0",
-    "vitest": "^2.0.5"
+    "selenium-webdriver": "4.25.0",
+    "vitest": "^2.1.1"
   },
   "volta": {
     "npm": "10.8.2",
